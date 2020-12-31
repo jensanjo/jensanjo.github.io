@@ -8,7 +8,7 @@ twitter_username: joepwm
 github_username:  jensanjo
 
 # Build settings
-theme: jekyll-theme-midnight
+theme: minima
 plugins:
   - jekyll-feed
   
