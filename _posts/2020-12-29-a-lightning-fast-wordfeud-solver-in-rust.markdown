@@ -44,25 +44,40 @@ The bold nodes are `terminal`, which means they represent a valid word. Non-term
 ## The board
 
 The wordfeud board can be thought of as a square grid of 15x15 cells, where each cell can be empty or contain a tile.
+It can be represented by 15 lines of 15 characters. Lower case letters are normal tiles, while upper case letters represent a 
+blank tile used as a wildcard. For example, the screenshot above shows like this:
 
-|    | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12| 13| 14|
-|----|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|  0 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-|  1 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-|  2 |   |   |   |   |   |   |   |   |   |   |   |   | Z |   |   |
-|  3 |   |   |   |   |   |   |   |   |   |   |   |   | I | F |   |
-|  4 |   |   |   |   |   |   |   |   |   | D | E | N | T | A | L |
-|  5 |   |   |   |   |   |   |   |   |   |   | V |   | E | X |   |
-|  6 |   |   |   |   |   |   |   | H |   |   | E |   |   |   |   |
-|  7 |   |   |   |   |   |   | H | E | D | O | N | I | C |   |   |
-|  8 |   |   |   |   | R |   |   | D |   |   | L |   |   |   |   |
-|  9 |   |   |   |   | O |   |   | O |   |   | Y |   |   |   |   |
-| 10 |   |   |   |   | B | R | E | N | T |   |   |   |   |   |   |
-| 11 |   |   |   |   | O |   |   | I |   |   | V |   |   |   |   |
-| 12 |   | G | A | I | T | S |   | S |   |   | E |   |   |   |   |
-| 13 |   |   |   |   | I |   |   | M | U | N | G | E | D |   |   |
-| 14 |   |   |   |   | C |   |   |   |   |   | A |   |   |   |   |
+```
+...............
+...............
+............z..
+............if.
+.........dental
+..........v.ex.
+.......h..e....
+......hedonIc..
+....r..d..l....
+....o..o..y....
+....brent......
+....o..i..v....
+.gaits.S..e....
+....i..munged..
+....c.....a....
+```
 
+## Find all possible words
+The steps to calculate all words that can be played with our letters will be in pseudo code:
 
+{% highlight rust %}
+for direction in horizontal, vertical {
+    for row in rows[direction] {        
+    }
+}
+{% endhighlight %}
 
-
+```Rust
+for direction in horizontal, vertical {
+    for row in rows[direction] {        
+    }
+}
+```

@@ -86,303 +86,40 @@ All the descendants of a node have a common prefix. The root node is the empty s
 
 <h2 id="the-board">The board</h2>
 
-<p>The wordfeud board can be thought of as a square grid of 15x15 cells, where each cell can be empty or contain a tile.</p>
+<p>The wordfeud board can be thought of as a square grid of 15x15 cells, where each cell can be empty or contain a tile.
+It can be represented by 15 lines of 15 characters. Lower case letters are normal tiles, while upper case letters represent a 
+blank tile used as a wildcard. For example, the screenshot above shows like this:</p>
 
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>10</th>
-      <th>11</th>
-      <th>12</th>
-      <th>13</th>
-      <th>14</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>Z</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>I</td>
-      <td>F</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>D</td>
-      <td>E</td>
-      <td>N</td>
-      <td>T</td>
-      <td>A</td>
-      <td>L</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>V</td>
-      <td> </td>
-      <td>E</td>
-      <td>X</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>H</td>
-      <td> </td>
-      <td> </td>
-      <td>E</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>H</td>
-      <td>E</td>
-      <td>D</td>
-      <td>O</td>
-      <td>N</td>
-      <td>I</td>
-      <td>C</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>R</td>
-      <td> </td>
-      <td> </td>
-      <td>D</td>
-      <td> </td>
-      <td> </td>
-      <td>L</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>O</td>
-      <td> </td>
-      <td> </td>
-      <td>O</td>
-      <td> </td>
-      <td> </td>
-      <td>Y</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>B</td>
-      <td>R</td>
-      <td>E</td>
-      <td>N</td>
-      <td>T</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>O</td>
-      <td> </td>
-      <td> </td>
-      <td>I</td>
-      <td> </td>
-      <td> </td>
-      <td>V</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td> </td>
-      <td>G</td>
-      <td>A</td>
-      <td>I</td>
-      <td>T</td>
-      <td>S</td>
-      <td> </td>
-      <td>S</td>
-      <td> </td>
-      <td> </td>
-      <td>E</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>I</td>
-      <td> </td>
-      <td> </td>
-      <td>M</td>
-      <td>U</td>
-      <td>N</td>
-      <td>G</td>
-      <td>E</td>
-      <td>D</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>14</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>C</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>A</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...............
+...............
+............z..
+............if.
+.........dental
+..........v.ex.
+.......h..e....
+......hedonIc..
+....r..d..l....
+....o..o..y....
+....brent......
+....o..i..v....
+.gaits.S..e....
+....i..munged..
+....c.....a....
+</code></pre></div></div>
 
+<h2 id="find-all-possible-words">Find all possible words</h2>
+<p>The steps to calculate all words that can be played with our letters will be in pseudo code:</p>
+
+<figure class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">for</span> <span class="n">direction</span> <span class="n">in</span> <span class="n">horizontal</span><span class="p">,</span> <span class="n">vertical</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="n">in</span> <span class="n">rows</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span> <span class="p">{</span>        
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<pre><code class="language-Rust">for direction in horizontal, vertical {
+    for row in rows[direction] {        
+    }
+}
+</code></pre>
 
   </div><a class="u-url" href="/wordfeud/rust/2020/12/29/a-lightning-fast-wordfeud-solver-in-rust.html" hidden></a>
 </article>

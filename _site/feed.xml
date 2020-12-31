@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-12-30T13:58:52+01:00</updated><id>/feed.xml</id><title type="html">Adventures in Rust</title><subtitle>A blog on discovering Rust programming</subtitle><entry><title type="html">A lightning fast Wordfeud Solver in Rust</title><link href="/wordfeud/rust/2020/12/29/a-lightning-fast-wordfeud-solver-in-rust.html" rel="alternate" type="text/html" title="A lightning fast Wordfeud Solver in Rust" /><published>2020-12-29T14:38:21+01:00</published><updated>2020-12-29T14:38:21+01:00</updated><id>/wordfeud/rust/2020/12/29/a-lightning-fast-wordfeud-solver-in-rust</id><content type="html" xml:base="/wordfeud/rust/2020/12/29/a-lightning-fast-wordfeud-solver-in-rust.html">&lt;p&gt;A few years ago I became intrigued by the Rust programming language. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-12-31T13:41:25+01:00</updated><id>/feed.xml</id><title type="html">Adventures in Rust</title><subtitle>A blog on discovering Rust programming</subtitle><entry><title type="html">A lightning fast Wordfeud Solver in Rust</title><link href="/wordfeud/rust/2020/12/29/a-lightning-fast-wordfeud-solver-in-rust.html" rel="alternate" type="text/html" title="A lightning fast Wordfeud Solver in Rust" /><published>2020-12-29T14:38:21+01:00</published><updated>2020-12-29T14:38:21+01:00</updated><id>/wordfeud/rust/2020/12/29/a-lightning-fast-wordfeud-solver-in-rust</id><content type="html" xml:base="/wordfeud/rust/2020/12/29/a-lightning-fast-wordfeud-solver-in-rust.html">&lt;p&gt;A few years ago I became intrigued by the Rust programming language. 
 Like many other people I enjoy playing the popular &lt;a href=&quot;https://wordfeud.com/&quot;&gt;Wordfeud&lt;/a&gt; game. I was looking for a programming project to exercise my Rust skills, and creating a wordfeud solver in Rust seemed like a nice fit.&lt;/p&gt;
 
 &lt;h1 id=&quot;the-wordfeud-game&quot;&gt;The Wordfeud game&lt;/h1&gt;
@@ -37,299 +37,37 @@ All the descendants of a node have a common prefix. The root node is the empty s
 
 &lt;h2 id=&quot;the-board&quot;&gt;The board&lt;/h2&gt;
 
-&lt;p&gt;The wordfeud board can be thought of as a square grid of 15x15 cells, where each cell can be empty or contain a tile.&lt;/p&gt;
+&lt;p&gt;The wordfeud board can be thought of as a square grid of 15x15 cells, where each cell can be empty or contain a tile.
+It can be represented by 15 lines of 15 characters. Lower case letters are normal tiles, while upper case letters represent a 
+blank tile used as a wildcard. For example, the screenshot above shows like this:&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt; &lt;/th&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;th&gt;3&lt;/th&gt;
-      &lt;th&gt;4&lt;/th&gt;
-      &lt;th&gt;5&lt;/th&gt;
-      &lt;th&gt;6&lt;/th&gt;
-      &lt;th&gt;7&lt;/th&gt;
-      &lt;th&gt;8&lt;/th&gt;
-      &lt;th&gt;9&lt;/th&gt;
-      &lt;th&gt;10&lt;/th&gt;
-      &lt;th&gt;11&lt;/th&gt;
-      &lt;th&gt;12&lt;/th&gt;
-      &lt;th&gt;13&lt;/th&gt;
-      &lt;th&gt;14&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;Z&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;I&lt;/td&gt;
-      &lt;td&gt;F&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;D&lt;/td&gt;
-      &lt;td&gt;E&lt;/td&gt;
-      &lt;td&gt;N&lt;/td&gt;
-      &lt;td&gt;T&lt;/td&gt;
-      &lt;td&gt;A&lt;/td&gt;
-      &lt;td&gt;L&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;5&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;V&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;E&lt;/td&gt;
-      &lt;td&gt;X&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;6&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;H&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;E&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;H&lt;/td&gt;
-      &lt;td&gt;E&lt;/td&gt;
-      &lt;td&gt;D&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-      &lt;td&gt;N&lt;/td&gt;
-      &lt;td&gt;I&lt;/td&gt;
-      &lt;td&gt;C&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;8&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;R&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;D&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;L&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;9&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;Y&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;B&lt;/td&gt;
-      &lt;td&gt;R&lt;/td&gt;
-      &lt;td&gt;E&lt;/td&gt;
-      &lt;td&gt;N&lt;/td&gt;
-      &lt;td&gt;T&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;11&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;I&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;V&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;12&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;G&lt;/td&gt;
-      &lt;td&gt;A&lt;/td&gt;
-      &lt;td&gt;I&lt;/td&gt;
-      &lt;td&gt;T&lt;/td&gt;
-      &lt;td&gt;S&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;S&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;E&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;13&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;I&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;M&lt;/td&gt;
-      &lt;td&gt;U&lt;/td&gt;
-      &lt;td&gt;N&lt;/td&gt;
-      &lt;td&gt;G&lt;/td&gt;
-      &lt;td&gt;E&lt;/td&gt;
-      &lt;td&gt;D&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;14&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;C&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;A&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</content><author><name></name></author><category term="wordfeud" /><category term="rust" /><summary type="html">A few years ago I became intrigued by the Rust programming language. Like many other people I enjoy playing the popular Wordfeud game. I was looking for a programming project to exercise my Rust skills, and creating a wordfeud solver in Rust seemed like a nice fit.</summary></entry></feed>
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...............
+...............
+............z..
+............if.
+.........dental
+..........v.ex.
+.......h..e....
+......hedonIc..
+....r..d..l....
+....o..o..y....
+....brent......
+....o..i..v....
+.gaits.S..e....
+....i..munged..
+....c.....a....
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;find-all-possible-words&quot;&gt;Find all possible words&lt;/h2&gt;
+&lt;p&gt;The steps to calculate all words that can be played with our letters will be in pseudo code:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;horizontal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vertical&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;        
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Rust&quot;&gt;for direction in horizontal, vertical {
+    for row in rows[direction] {        
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="wordfeud" /><category term="rust" /><summary type="html">A few years ago I became intrigued by the Rust programming language. Like many other people I enjoy playing the popular Wordfeud game. I was looking for a programming project to exercise my Rust skills, and creating a wordfeud solver in Rust seemed like a nice fit.</summary></entry></feed>
