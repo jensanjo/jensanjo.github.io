@@ -689,5 +689,4 @@ If you made it this far, I hope you enjoyed reading this article!
 
 You can find `wordfeud-solver` on [github](https://github.com/jensanjo/wordfeud-solver) and [crates.io](https://crates.io/crates/wordfeud-solver).
 
-If you have any questions or suggestions for improvement please drop me a line **TODO**
 
